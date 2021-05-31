@@ -28,15 +28,23 @@ const Div = styled.div`
  }
  .results{
     text-align: center;
+    h2{
+        
+    }
+ }
+ @media screen and (min-width: 768px) {
+    grid-gap: 40px 140px;
+    background-size: 320px;
+
+
  }
 `
  
-const Table = () => {
+const Table = ({newScore}) => {
     const [playing, setPlaying] = useState(false)
     const [pick, setPick] = useState("")
     const [housePick, setHousePick] = useState("default")
-    const [results, setResults] = useState("???")
-    const [score, setScore] = useState(0)
+    const [results, setResults] = useState(false)
     function getRandomInt(min, max) {
         return (Math.floor(Math.random() * (max - min)) + min)
       }
@@ -51,17 +59,21 @@ const Table = () => {
                 clearInterval(interval)
                 resolve(pick)
             }, 2000)
-            
         })
-
-
+        
+        
         
     }
     const onClick = async(name) => { 
         setPlaying(true)
         setPick(name)
         const house = await launchHousePick()
-        setResults(playWithIA(name, house))
+        const results = playWithIA(name, house)
+        setResults(results)
+        if(results === "WIN"){
+            newScore()
+
+        }
     }
     const playWithIA = (pick, housePick) =>{
         if(housePick === pick){
@@ -96,7 +108,7 @@ const Table = () => {
         setPlaying(false)
         setPick("")
         setHousePick("default")
-        setResults("???")
+        setResults(false)
 
     }
     
@@ -117,16 +129,21 @@ const Table = () => {
            </>):
             <>
                 <div className="in-game">
-                    <Token name={pick}/>
+                    <Token name={pick} isShadowAnimated={(results==="WIN")}/>
                     <p>YOU PICKED</p>
                 </div>
                 <div className="in-game">
-                    <Token name={housePick}/>
+                    <Token name={housePick} isShadowAnimated={(results==="LOSE")}/>
                     <p>THE HOUSE PICKED</p>
                 </div>
                 <div className="results">
-                    <h2>YOU {results}</h2>
-                    <WhiteButton onClick={handleTryAgain}>PLAY AGAIN</WhiteButton>
+                    {results && (
+                        <>
+                        <h2>YOU {results}</h2>
+                        <WhiteButton onClick={handleTryAgain}>PLAY AGAIN</WhiteButton>
+                        </>
+                    )
+                    }
                 </div>
             </>
            }

@@ -4,8 +4,12 @@ import Button from "./Button"
 import Modal from "./Modal"
 
 const Div = styled.div`
-   margin: 0 auto;
- 
+    text-align: center;
+@media screen and (min-width: 1024px){
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+ }
 `
  
 const Rules = () => {
@@ -20,7 +24,7 @@ const Rules = () => {
    return(
        <Div>
            <Modal isOpen={state.isOpen} onClose={onCloseModal}/>
-           <Button onClick={onOpenModal}>RULES</Button>
+           <Button onClick={onOpenModal} className="button">RULES</Button>
        </Div>
    )
 }

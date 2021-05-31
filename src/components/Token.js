@@ -1,6 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
- 
+import styled, {keyframes} from 'styled-components'
+
+const shadow = keyframes`
+    to{
+        box-shadow: 0 0 0 40px rgba(255,255,255,.03), 0 0 0 80px rgba(255,255,255,.02), 0 0 0 120px rgba(255,255,255,.01);
+        transform: rotateZ(360deg) scale(1.1);
+    }
+`
+
 const Div = styled.div`
  width: 130px;
  height: 125px;
@@ -10,6 +17,8 @@ const Div = styled.div`
  box-shadow: 0 5px 0 ${(props) => props.color.border};
  border-radius: 50%;
  cursor:pointer;
+ animation: 1s ${({isShadowAnimated}) => (isShadowAnimated) ? shadow : ""} forwards;
+ ${({isShadowAnimated}) => (isShadowAnimated) ? "box-shadow: 0 0 0 0px rgba(255,255,255,.03), 0 0 0 0px rgba(255,255,255,.02), 0 0 0 0px rgba(255,255,255,.01); ": null}
  &:active {
      transform: scale(.9);
  }
@@ -22,6 +31,10 @@ const Div = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+ }
+ @media screen and (min-width: 768px) {
+    width: 200px;
+    height: 195px;
  }
 `
 
@@ -44,7 +57,7 @@ const colors = {
     }
 }
  
-const Token = ({name = "default", onClick}) => {
+const Token = ({name = "default", onClick, isShadowAnimated = false}) => {
     const handleClick = () =>{
        if(onClick){
            onClick(name)
@@ -53,7 +66,7 @@ const Token = ({name = "default", onClick}) => {
 
 
    return(
-       <Div color={colors[name]} onClick={handleClick} name={name}>
+       <Div color={colors[name]} onClick={handleClick} name={name} isShadowAnimated={isShadowAnimated} >
             <div className="box">
                 {(name==="default")? null:
                 <img src={`./images/icon-${name}.svg`}/>}

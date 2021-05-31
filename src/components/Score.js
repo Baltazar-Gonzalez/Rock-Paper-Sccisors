@@ -18,13 +18,24 @@ const Div = styled.div`
     margin:0;
     font-weight:700;
   }
+  @media screen and (min-width: 768px){
+    width: 120px;
+  p{
+    font-size:60px;
+
+  }
+  h4{
+    font-size:20px;
+    margin:8px 8px -4px 8px;
+  }
+}
 `
  
-const Score = () => {
+const Score = ({score}) => {
   return(
       <Div>
         <h4>SCORE</h4>
-        <p>12</p>
+        <p>{score}</p>
       </Div>
     )
 }
