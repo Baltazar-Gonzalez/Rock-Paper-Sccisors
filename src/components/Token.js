@@ -4,7 +4,7 @@ import styled, {keyframes} from 'styled-components'
 const shadow = keyframes`
     to{
         box-shadow: 0 0 0 40px rgba(255,255,255,.03), 0 0 0 80px rgba(255,255,255,.02), 0 0 0 120px rgba(255,255,255,.01);
-        transform: rotateZ(360deg) scale(1.1);
+        transform: rotateY(360deg) scale(1.1);
     }
 `
 
@@ -33,9 +33,19 @@ const Div = styled.div`
     align-items: center;
  }
  @media screen and (min-width: 768px) {
-    width: 200px;
-    height: 195px;
+    width: 180px;
+    height: 175px;
+    border: 20px solid ${(props) => props.color.base};
+    box-shadow: 0 8px 0 ${(props) => props.color.border};
+    .box{
+    box-shadow: 0 -6px 0 ${({name}) => (name==="default") ? "transparent" : "#babfd4"};
+    }
+    img{
+        width:50%;
+    }
  }
+
+
 `
 
 const colors = {

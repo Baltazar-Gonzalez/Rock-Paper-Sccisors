@@ -19,6 +19,7 @@ max-width: 700px;
  }
  @media screen and (min-width: 768px){
     padding:20px 20px 20px 34px;
+    margin:12px auto 32px auto;
   h1{
     font-size: 36px;
     line-height: 0.8;

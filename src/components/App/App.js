@@ -13,7 +13,10 @@ const Div = styled.div`
  align-items: center;
  min-height: 100vh;
  padding: 32px;
- 
+ @media screen and (min-width: 1024px) {
+  justify-content: flex-start;
+
+ }
 `
 
 function App() {

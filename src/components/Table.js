@@ -28,15 +28,22 @@ const Div = styled.div`
  }
  .results{
     text-align: center;
-    h2{
-        
-    }
+    height: 74px;
  }
  @media screen and (min-width: 768px) {
-    grid-gap: 40px 140px;
-    background-size: 320px;
-
-
+grid-gap: 40px 140px;
+background-size: 290px;
+    .in-game{
+     display: flex;
+     flex-direction: column-reverse;
+     p{
+         margin: 30px 0;
+         font-size: 21px;
+     }
+ }
+ @media screen and (min-width: 1024px) {
+ 
+    }
  }
 `
  
